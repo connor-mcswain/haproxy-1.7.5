@@ -526,26 +526,7 @@ struct server *get_server_hashon(struct stream *s)
             srv = chash_get_server_hash(px, hash);
         else
             srv = map_get_server_hash(px, hash);
-    }
-    
-/* IGNORE THIS ... IT WILL BE DELETED ... USED SOLELY FOR DEBUGGING
-    if (srv) {
-        char string_to_hash_on[512];
-        char uri[2048];
-        char rule_arg[128] = "N/A";
-        snprintf(uri, s->txn.req.sl.rq.u_l < 2048 ? s->txn.req.sl.rq.u_l + 1 : 2048, "%s", b_ptr(s->req->buf, -http_uri_rewind(&s->txn.req)));
-        snprintf(string_to_hash_on, key->data.str.len < 512 ? key->data.str.len + 1 : 512, "%s", key->data.str.str);
-        if (strcmp(matched_rule->expr->fetch->kw, "hdr") || strcmp(matched_rule->expr->fetch->kw, "url_param")) {
-            snprintf(rule_arg, matched_rule->expr->arg_p->data.str.len+1, "%s", matched_rule->expr->arg_p->data.str.str);
-        }
-        fprintf(stdout, "get_server_hashon[%s] hashval[%s] rule[%s\(%s)]\n", uri, string_to_hash_on, matched_rule->expr->fetch->kw, rule_arg);
-    } else {
-        char uri[2048];
-        snprintf(uri, s->txn.req.sl.rq.u_l < 2048 ? s->txn.req.sl.rq.u_l + 1 : 2048, "%s", b_ptr(s->req->buf, -http_uri_rewind(&s->txn.req)));
-        fprintf(stdout, "get_server_hashon[%s] NO HASH FOUND .... doing ROUND ROBIN\n", uri);
-    }
-*/
-    
+    }   
         
     return srv;
 }
