@@ -478,6 +478,7 @@ struct server *get_server_hashon(struct stream *s)
     int rewind;
     struct sample * key = NULL;
     struct session *sess = strm_sess(s);
+    struct hdr_ctx ctx;
     
     /* tot_weight appears to mean srv_count */
     if (px->lbprm.tot_weight == 0)
