@@ -470,9 +470,7 @@ struct server *get_server_hh(struct stream *s)
  */
 struct server *get_server_hashon(struct stream *s)
 {
-    struct http_txn *txn  = s->txn;
     struct proxy *px   = s->be;
-    struct hdr_ctx ctx;
     struct server *srv = NULL;
     struct channel *req = &s->req;
     struct hash_rule *hash_rule;
