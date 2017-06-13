@@ -495,7 +495,7 @@ struct server *get_server_hashon(struct stream *s)
         
         matched_rule = hash_rule;
         if (hash_rule->cond) {
-            ret = acl_exec_cond(hash_rule->cond, px, s, s->txn, SMP_OPT_DIR_REQ|SMP_OPT_FINAL);
+            ret = acl_exec_cond(hash_rule->cond, px, sess, s->txn, SMP_OPT_DIR_REQ|SMP_OPT_FINAL);
             ret = acl_pass(ret);
             if (hash_rule->cond->pol == ACL_COND_UNLESS)
                 ret = !ret;
